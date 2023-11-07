@@ -1,6 +1,4 @@
 // THE ACCOUNT OBJECT SHOULD HAVE THE FOLLWOING PROPERTIES:
-// expenses: an array that should hold all of your expenses, can be empty from start
-// income: an array that should hold all of your income, can be empty from start
 // addExpenses: a function that vill add an expense to the expenses array
 // addIncome: a function that vill add an income to the income array
 // listAllExpenses: a function that should list all the expenses in the expenses array
@@ -13,52 +11,56 @@
 // 3. take the input from the user and store it (save it) in a variable [DONE]
 // 4. use the stored variable to display the correct menu choice 
 // 5. Create the switch statement layout for my menu choices - and comment on why [DONE]
-// 6. Create the arrays for expenses and income 
+// 6. Create the arrays for expenses and income [DONE]
+// 7. googleing parseFloat and commenting on why we need to use it here [DONE]
+// 8. Add correct prompt to income and expense in the menu [DONE]
 
 
 // --- create the account OBJECT ---
 const account = {
-    // name: the account holders name, should be a string
-    name: "Hanna"
+    // added name string and expense + income array
+    name: "Hanna",
+    expenses: [],
+    income: [],
 }
-//arrays for expenses and incomes 
-let expenses = []
-let income = []
-
 
 
 // --- create the FUNCTION called menu() --- 
 function menu() {
-// the function menu() should only be responsible to show the different choices
-// for the user.
+// we need to use prompt() in parseFloat() to get numeric input from the user(such as expenses).
+// It's converting the user's input (which is a string) to a number using parseFloat, that allows the calculator to work properly and be able to calculate 
 const choice = parseFloat(
     prompt(
-        "Please select from the menu:\n1) Add income\n2) Add expense\n3) List all expenses\n4) See total balance"
+        "EXPENSE TRACKER\nPlease select from the menu:\n1.) Add income\n2.) Add expense\n3.) List all expenses\n4.) See total balance"
         )
     ); 
     console.log("Choice: " + choice);
 // Im using Swtich instead for if/else, beacause its clear and easy to read. The menu is pretty straightforward so Switch Statement is a good choice for simplicity
-// at the moment im not sure what to put inside/ what the switch should display so im comming back to this one 
 switch (choice) {
     case 1:
-        console.log("This is choice 1");
+        const incomeAmount = parseFloat(prompt("How much was your income?"));
+        //I dont need a description for the income, just need to ad the number to the income array
         break;
 
     case 2:
-        console.log("This is choice 2");
+        const expenseDescription = prompt("What was your expense? (rent, food, gas etc.)");
+        const expenseAmount = parseFloat(prompt("How much was your expense?"));
+        //Here i need first a descrition - which is a string (works without parseFloat) then i need parseFloat for number
         break;
 
     case 3:
-        console.log("This is choice 3");
+        // HEre i need to get back
+        // // listAllExpenses: a function that should list all the expenses in the expenses array
         break;
 
     case 4:
-        console.log("This is choice 5");
+        // HEre i need to go back
+        // // getSummary: a function that should summarize your total balances. It should show your total
         break;
 
     default:
         alert("Invalid choice. Please select a valid option");
         break; 
-}
+    }
 }
 menu();
