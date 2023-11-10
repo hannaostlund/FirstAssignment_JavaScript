@@ -1,6 +1,4 @@
 // THE ACCOUNT OBJECT SHOULD HAVE THE FOLLWOING PROPERTIES:
-// addExpenses: a function that vill add an expense to the expenses array
-// addIncome: a function that vill add an income to the income array
 // listAllExpenses: a function that should list all the expenses in the expenses array
 // getSummary: a function that should summarize your total balances. It should show your total
 // income, your total expenses and also calculate your current balances (income - expenses).
@@ -14,16 +12,37 @@
 // 6. Create the arrays for expenses and income [DONE]
 // 7. googleing parseFloat and commenting on why we need to use it here [DONE]
 // 8. Add correct prompt to income and expense in the menu [DONE]
-
+// 9. Add addExpenses - a function that add expense to the expenses array & explain it [DONE]
+// 10. add function addIncome - add income to income array [DONE]
+// 11. listAllExpenses - add a function that lists all the expenses in the expenses array
+// 12. add getSummary funcion - that summarizes the total balance, it should show total income, total expenses and also calculate currant balances
 
 // --- create the account OBJECT ---
 const account = {
-    // added name string and expense + income array
+    //added name string and expense + income array
     name: "Hanna",
     expenses: [],
     income: [],
+    // creating the function for addExpense, (its a property function, so its an function inside an object) using the PUSH array method(because it adds to my exsisting array "expenses")
+    addExpense: function (description, amount){
+        if (description !== undefined && amount !== undefined) {
+            this.expenses.push({description, amount});
+            //"this" line refer to my expenses array property of the current object (account)
+            return true; // successful addition, description and amount will be added if they are not undefined 
+        } else {
+            return false; //invalid input, not defined 
+        }
+    }, // ((first i forgot to add a coma here and didnt see why it not worked, now ive learnt that in JS object literals porterties are separated by comas))
+    // creating the function for income, using the "push" array method, this function works the same as addExpense 
+    addIncome: function (amount) {
+        if (amount !== undefined) {
+            this.income.push(amount);
+            return true; // amount is added if it's not undefined
+        } else {
+            return false; // if it's not defined, it's invalid input
+        }
+    }
 }
-
 
 // --- create the FUNCTION called menu() --- 
 function menu() {
