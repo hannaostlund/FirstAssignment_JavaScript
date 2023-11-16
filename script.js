@@ -1,5 +1,4 @@
 // THE ACCOUNT OBJECT SHOULD HAVE THE FOLLWOING PROPERTIES:
-// listAllExpenses: a function that should list all the expenses in the expenses array
 // getSummary: a function that should summarize your total balances. It should show your total
 // income, your total expenses and also calculate your current balances (income - expenses).
 
@@ -14,8 +13,10 @@
 // 8. Add correct prompt to income and expense in the menu [DONE]
 // 9. Add addExpenses - a function that add expense to the expenses array & explain it [DONE]
 // 10. add function addIncome - add income to income array [DONE]
-// 11. listAllExpenses - add a function that lists all the expenses in the expenses array
-// 12. add getSummary funcion - that summarizes the total balance, it should show total income, total expenses and also calculate currant balances
+// 11. add listAllExpenses function that lists all the expenses in the expenses array. 
+//     Also going over info about the "for" statement loop (at mdn web docs) [DONE]
+// 12. add getSummary funcion - that summarizes the total balance, it should show total income, 
+//     total expenses and also calculate currant balances
 
 // --- create the account OBJECT ---
 const account = {
@@ -23,7 +24,7 @@ const account = {
     name: "Hanna",
     expenses: [],
     income: [],
-    // creating the function for addExpense, (its a property function, so its an function inside an object) using the PUSH array method(because it adds to my exsisting array "expenses")
+    // creating the function for addExpense, using a nethod declaration. (its a property function, so its an function inside an object) using the PUSH array method(because it adds to my exsisting array "expenses")
     addExpense: function (description, amount){
         if (description !== undefined && amount !== undefined) {
             this.expenses.push({description, amount});
@@ -32,8 +33,8 @@ const account = {
         } else {
             return false; //invalid input, not defined 
         }
-    }, // ((first i forgot to add a coma here and didnt see why it not worked, now ive learnt that in JS object literals porterties are separated by comas))
-    // creating the function for income, using the "push" array method, this function works the same as addExpense 
+    }, // ((btw first I forgot to add a coma here and didnt see why it not worked, now i've learnt that in JS object literals porterties are separated by comas))
+    // creating the function for income, using the "push" array method, this function works the same as addExpense  
     addIncome: function (amount) {
         if (amount !== undefined) {
             this.income.push(amount);
@@ -41,8 +42,19 @@ const account = {
         } else {
             return false; // if it's not defined, it's invalid input
         }
+    },
+    listAllExpenses: function () {
+        //created a function as a method within the object
+        for (let i = 0; i < this.expenses.length; i++) {
+            //using the "for" loop, to go through each expense in the expenses array (using info from mdn web docs)
+            // setting up initialization (let i = 0), condition (i < this.expense.length) and incresment (i++)
+            const currentExpense = this.expenses [i];
+            //get the current expense at index i, within the loop
+            alert (`Expense: ${currentExpense.description}, Amount:${currentExpense.amount}`);
+            // Using templete literal to display alert message (not using console.log as the instructions says)
+        }
     }
-}
+};
 
 // --- create the FUNCTION called menu() --- 
 function menu() {
@@ -53,7 +65,7 @@ const choice = parseFloat(
         "EXPENSE TRACKER\nPlease select from the menu:\n1.) Add income\n2.) Add expense\n3.) List all expenses\n4.) See total balance"
         )
     ); 
-    console.log("Choice: " + choice);
+    alert("Choice: " + choice);
 // Im using Swtich instead for if/else, beacause its clear and easy to read. The menu is pretty straightforward so Switch Statement is a good choice for simplicity
 switch (choice) {
     case 1:
@@ -68,8 +80,8 @@ switch (choice) {
         break;
 
     case 3:
-        // HEre i need to get back
-        // // listAllExpenses: a function that should list all the expenses in the expenses array
+        account.listAllExpenses();
+        //calling the function listAllExpenses
         break;
 
     case 4:
