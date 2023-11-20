@@ -30,7 +30,7 @@ const account = {
     //using the PUSH array method(because it adds to my exsisting array "expenses")
     addExpense: function (description, amount){
         if (description && !isNaN(amount) && typeof amount === "number" && amount >= 0) {
-            //error handling, using both typeof amount = number and isNaN to handle error messages.  
+            //error handling, using both typeof amount = number and isNaN to handle error inputs 
             this.expenses.push({description, amount});
             //"this" line refer to my expenses array property of the current object (account)
             return true; // successful addition, description and amount will be added 
@@ -40,28 +40,30 @@ const account = {
     }, 
     // creating the function for income, using the "push" array method, this function works the same as addExpense  
     addIncome: function (amount) {
-        //at first I had written the code "if (amount !== undefined)" and as I progressed in the assignment I realized I needed to be more specific
-        //so that the functions checks that the input is a number 
+        //at first I had written the code "if (amount !== undefined)" and as I progressed in the assignment 
+        // I realized I needed to be more specific so that the functions checks that the input is a number 
         if (isNaN(amount)){
-            //alert("Invalid input! Please enter a number for income"); I had to remove this since I already have alert in my switch
             return false;
-            //I struggled to handle how to make sure a string couldnt be added to income, and finally i added the isNaN (info from MDN web docs)
+            //I struggled to handle how to make sure a string couldnt be added to income, 
+            //and finally i added the isNaN method (using info from MDN web docs)
         } else {
             this.income.push(amount);
-            //alert("Income added"); (I have an alert in the Switch for this so i dont really need this)
             return true;
             //using the push array to add the income array
         }
     },
     listAllExpenses: function () {
-        //At first I created a function for listAll with a for loop, but it listed all expenses seperatly, so I had to research and use
-        // the array method "map", using the link provided by Helena under "array method" video  https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
+        //At first I created a function for listAll with a "for" loop, but it listed expenses seperatly, so I had to research and use
+        // the array method "map", using the link provided by Helena under "array method" video  
+        // info from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array
         const allExpenses = this.expenses.map(function (currentExpense) {
-            return `Expense: ${currentExpense.description}, Amount: ${currentExpense.amount}`;
-        });
+            return (`Expense: ${currentExpense.description}, Amount: ${currentExpense.amount}`);
+        }); 
+        //"Map" goes over all expense in this.expeses array, and creating new array with the expense string
+        //return the string with a templet literal 
         alert("All expenses:\n" + allExpenses.join("\n"));
-        //"map" goes over all expenses in the this.expenses array, and then creating a new array allExpenses with the expense string
-        //Using the "join " array method to concatenate all elements in the allExpenses array https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join
+        // "Join" all elements in the allEpenses array into one string using the join array method 
+        // info from https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/join 
     },
     getSummary: function () {
         let totalIncome = 0;
